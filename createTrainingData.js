@@ -1,6 +1,141 @@
 const brain = require("brain.js");
 const fs = require("fs");
-const data = require("./data");
+// const data = require("./data");
+
+const data = [
+  { input: [1, -1, 0, 0, 0, 0, 0, 1, 0], output: [0, 0, 0, 0, 1, 0, 0, 0, 0] },
+  { input: [1, 0, 1, 0, 0, 0, 0, -1, 0], output: [0, 1, 0, 0, 0, 0, 0, 0, 0] },
+  { input: [0, 0, 0, 0, 0, 1, 0, 0, 0], output: [0, 0, 0, 0, 0, 0, 0, 0, 1] },
+  { input: [0, 0, 1, 0, 0, 0, 0, 0, 0], output: [0, 0, 0, 0, 1, 0, 0, 0, 0] },
+  { input: [1, 0, 0, 0, 0, 0, 0, 0, 0], output: [0, 0, 0, 0, 1, 0, 0, 0, 0] },
+  { input: [0, 0, 0, 0, 0, 0, 0, 0, 1], output: [0, 0, 0, 0, 1, 0, 0, 0, 0] },
+  { input: [0, 0, 0, 0, 0, 0, 1, 0, 0], output: [0, 0, 0, 0, 1, 0, 0, 0, 0] },
+  { input: [0, 0, 0, 1, 0, 0, 0, 0, 0], output: [0, 0, 0, 0, 1, 0, 0, 0, 0] },
+  {
+    input: [1, 0, 1, 0, -1, 0, 0, 0, 0],
+    output: [0, 1, 0, 0, 0, 0, 0, 0, 0],
+  },
+  {
+    input: [0, 0, 1, 0, -1, 1, 0, 0, 0],
+    output: [0, 0, 0, 0, 0, 0, 0, 0, 1],
+  },
+  {
+    input: [0, -1, 1, 1, -1, 1, 0, 0, 0],
+    output: [0, 0, 0, 0, 0, 0, 0, 1, 0],
+  },
+  {
+    input: [0, 1, 1, 0, -1, 0, 0, 0, 0],
+    output: [1, 0, 0, 0, 0, 0, 0, 0, 0],
+  },
+  {
+    input: [0, 1, 1, 0, -1, 1, 0, 0, -1],
+    output: [1, 0, 0, 0, 0, 0, 0, 0, 0],
+  },
+  {
+    input: [0, 0, 0, 1, 1, 0, 0, -1, 0],
+    output: [0, 0, 0, 0, 0, 1, 0, 0, 0],
+  },
+  {
+    input: [-1, 1, 0, 0, 0, 1, 0, 1, -1],
+    output: [0, 0, 0, 0, 1, 0, 0, 0, 0],
+  },
+  {
+    input: [0, 0, 1, 0, 1, -1, 0, 0, 0],
+    output: [0, 0, 0, 0, 0, 0, 1, 0, 0],
+  },
+  {
+    input: [1, 1, 0, 0, -1, 0, 0, 0, 0],
+    output: [0, 0, 1, 0, 0, 0, 0, 0, 0],
+  },
+  {
+    input: [0, 0, 0, 1, -1, 1, 1, 0, -1],
+    output: [1, 0, 0, 0, 0, 0, 0, 0, 0],
+  },
+  {
+    input: [0, 1, 0, 1, -1, 1, 1, -1, -1],
+    output: [1, 0, 0, 0, 0, 0, 0, 0, 0],
+  },
+  {
+    input: [0, 0, 1, 0, -1, 1, 0, 1, -1],
+    output: [1, 0, 0, 0, 0, 0, 0, 0, 0],
+  },
+  {
+    input: [1, -1, 1, 0, -1, 1, 0, 0, 0],
+    output: [0, 0, 0, 0, 0, 0, 0, 1, 0],
+  },
+  {
+    input: [0, 0, 0, 0, 1, 1, 0, 0, -1],
+    output: [0, 0, 0, 1, 0, 0, 0, 0, 0],
+  },
+  {
+    input: [0, 0, 1, 0, 1, 0, 0, 0, -1],
+    output: [0, 0, 0, 0, 0, 0, 1, 0, 0],
+  },
+  {
+    input: [0, 0, 0, 0, 1, -1, 1, 0, 0],
+    output: [0, 0, 1, 0, 0, 0, 0, 0, 0],
+  },
+  {
+    input: [0, 1, 0, -1, 1, 1, 0, 0, -1],
+    output: [0, 0, 0, 0, 0, 0, 0, 1, 0],
+  },
+  {
+    input: [-1, 0, 1, 1, 0, 1, 1, -1, -1],
+    output: [0, 0, 0, 0, 1, 0, 0, 0, 0],
+  },
+  {
+    input: [0, 0, 0, -1, 1, 0, 0, 1, 0],
+    output: [0, 1, 0, 0, 0, 0, 0, 0, 0],
+  },
+  {
+    input: [0, 0, 0, 0, 1, -1, 0, 1, 0],
+    output: [0, 1, 0, 0, 0, 0, 0, 0, 0],
+  },
+  {
+    input: [0, 0, 0, 0, -1, 0, 0, 1, 1],
+    output: [0, 0, 0, 0, 0, 0, 1, 0, 0],
+  },
+  {
+    input: [0, 0, 0, 0, -1, 0, 1, 1, 0],
+    output: [0, 0, 0, 0, 0, 0, 0, 0, 1],
+  },
+  {
+    input: [1, 0, 0, 0, -1, 0, 1, 1, -1],
+    output: [0, 0, 0, 1, 0, 0, 0, 0, 0],
+  },
+  {
+    input: [0, 0, 0, 0, -1, 0, 0, 1, 1],
+    output: [0, 0, 0, 0, 0, 0, 1, 0, 0],
+  },
+  {
+    input: [0, 0, 0, 0, -1, 1, -1, 1, 1],
+    output: [0, 0, 1, 0, 0, 0, 0, 0, 0],
+  },
+  {
+    input: [0, 1, 1, 0, 0, -1, 0, 0, 0],
+    output: [1, 0, 0, 0, 0, 0, 0, 0, 0],
+  },
+  {
+    input: [-1, 1, 1, 0, -1, 1, 0, 0, 0],
+    output: [0, 0, 0, 0, 0, 0, 0, 0, 1],
+  },
+  {
+    input: [-1, 1, 1, 0, -1, 0, -1, 1, 1],
+    output: [0, 0, 0, 1, 0, 0, 0, 0, 0],
+  },
+  {
+    input: [-1, 1, 1, 0, -1, 0, 0, 0, 1],
+    output: [0, 0, 0, 0, 0, 1, 0, 0, 0],
+  },
+  {
+    input: [-1, 1, 1, 0, -1, -1, 0, 1, 1],
+    output: [0, 0, 0, 1, 0, 0, 0, 0, 0],
+  },
+  {
+    input: [0, 0, 1, 0, 1, -1, 0, 0, 0],
+    output: [0, 0, 0, 0, 0, 0, 1, 0, 0],
+  },
+];
 
 const config = {
   binaryThresh: 0.5,
@@ -44,55 +179,35 @@ function processLargeArrayAsync(array, fn) {
 }
 
 console.log("--¯_(ツ)_/¯-----------started training...----------");
-const preparedTrainingData = [];
-processLargeArrayAsync(data, (set) => {
-  //   const currentPosition = set.slice(9);
-  //   const board = set.slice(0, 9);
-  //   for (let position = 0; position < 9; position++) {
-  //     preparedTrainingData.push({
-  //       input: { board, position },
-  //       output: currentPosition === position ? 1 : 0
-  //     });
-  //   }
-  preparedTrainingData.push({
-    input: set.slice(0, 9),
-    output: set.slice(9),
+const board = [-1, 0, 1, 0, 1, 0, 0, 0, 0];
+
+console.log("--¯_(ツ)_/¯-----------done preparing array----------");
+network.train(data);
+const result = network.run(board);
+console.log(
+  "--¯_(ツ)_/¯-----------network.run([-1, 0, 1, 0, 1, 0, 0, 0, 0])----------",
+  network.run(board)
+);
+const emptySpaces = board
+  .map((space, index) => {
+    return space === 0 ? result[index] : null;
+  })
+  .filter((space) => {
+    return space !== null;
   });
-}).then(() => {
-  console.log(
-    "--¯_(ツ)_/¯-----------preparedTrainingData----------",
-    preparedTrainingData
-  );
-  const board = [-1, 0, 1, 0, 1, 0, 0, 0, 0];
 
-  console.log("--¯_(ツ)_/¯-----------done preparing array----------");
-  network.train(preparedTrainingData);
-  const result = network.run(board);
-  console.log(
-    "--¯_(ツ)_/¯-----------network.run([-1, 0, 1, 0, 1, 0, 0, 0, 0])----------",
-    network.run(board)
-  );
-  const emptySpaces = board
-    .map((space, index) => {
-      return space === 0 ? result[index] : null;
-    })
-    .filter((space) => {
-      return space !== null;
-    });
-
-  console.log("--¯_(ツ)_/¯-----------emptySpaces----------", emptySpaces);
-  const sortedSpaces = emptySpaces.sort(function (a, b) {
-    return b - a;
-  })[0];
-  console.log("--¯_(ツ)_/¯-----------sortedSpaces----------", sortedSpaces);
-  const response = {
-    index: result.indexOf(sortedSpaces),
-  };
-  console.log("--¯_(ツ)_/¯-----------response----------", response);
-  fs.writeFileSync(
-    "./src/trainedNet.js",
-    `export default ${network.toFunction().toString()};`
-  );
-  console.log("youve done it");
-  console.log("--¯_(ツ)_/¯-----------done training----------");
-});
+console.log("--¯_(ツ)_/¯-----------emptySpaces----------", emptySpaces);
+const sortedSpaces = emptySpaces.sort(function (a, b) {
+  return b - a;
+})[0];
+console.log("--¯_(ツ)_/¯-----------sortedSpaces----------", sortedSpaces);
+const response = {
+  index: result.indexOf(sortedSpaces),
+};
+console.log("--¯_(ツ)_/¯-----------response----------", response);
+fs.writeFileSync(
+  "./src/trainedNet.js",
+  `export default ${network.toFunction().toString()};`
+);
+console.log("youve done it");
+console.log("--¯_(ツ)_/¯-----------done training----------");

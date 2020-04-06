@@ -6,7 +6,6 @@ const rows = [
   [3, 4, 5],
   [6, 7, 8],
 ];
-let count = 0;
 const Board = (props) => {
   return (
     <div>
@@ -60,9 +59,9 @@ class Game extends React.Component {
         xIsNext: !this.state.xIsNext,
       },
       () => {
-        const { history } = this.state;
-        const index = decideTurn(history[history.length - 1].squares);
         if (!this.state.xIsNext) {
+          const { history } = this.state;
+          const index = decideTurn(history[history.length - 1].squares);
           this.handleClick(index);
         }
       }
@@ -77,9 +76,6 @@ class Game extends React.Component {
   }
 
   render() {
-    console.log("--¯_(ツ)_/¯-----------++count----------", ++count);
-    console.log("--¯_(ツ)_/¯-----------this.state----------", this.state);
-    console.log("--¯_(ツ)_/¯-----------this.props----------", this.props);
     const history = this.state.history;
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
