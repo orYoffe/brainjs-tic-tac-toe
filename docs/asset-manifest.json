@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/brainjs-tic-tac-toe/static/css/main.24a946cf.chunk.css",
-    "main.js": "/brainjs-tic-tac-toe/static/js/main.4c7e9c8e.chunk.js",
-    "main.js.map": "/brainjs-tic-tac-toe/static/js/main.4c7e9c8e.chunk.js.map",
+    "main.js": "/brainjs-tic-tac-toe/static/js/main.df108420.chunk.js",
+    "main.js.map": "/brainjs-tic-tac-toe/static/js/main.df108420.chunk.js.map",
     "runtime-main.js": "/brainjs-tic-tac-toe/static/js/runtime-main.4a0275a8.js",
     "runtime-main.js.map": "/brainjs-tic-tac-toe/static/js/runtime-main.4a0275a8.js.map",
     "static/js/2.d909a870.chunk.js": "/brainjs-tic-tac-toe/static/js/2.d909a870.chunk.js",
     "static/js/2.d909a870.chunk.js.map": "/brainjs-tic-tac-toe/static/js/2.d909a870.chunk.js.map",
     "index.html": "/brainjs-tic-tac-toe/index.html",
-    "precache-manifest.3c1b14677459963c63b35fab0e285540.js": "/brainjs-tic-tac-toe/precache-manifest.3c1b14677459963c63b35fab0e285540.js",
+    "precache-manifest.465c51dcbda02a83581ac4f0d0893fd0.js": "/brainjs-tic-tac-toe/precache-manifest.465c51dcbda02a83581ac4f0d0893fd0.js",
     "service-worker.js": "/brainjs-tic-tac-toe/service-worker.js",
     "static/css/main.24a946cf.chunk.css.map": "/brainjs-tic-tac-toe/static/css/main.24a946cf.chunk.css.map",
     "static/js/2.d909a870.chunk.js.LICENSE.txt": "/brainjs-tic-tac-toe/static/js/2.d909a870.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.4a0275a8.js",
     "static/js/2.d909a870.chunk.js",
     "static/css/main.24a946cf.chunk.css",
-    "static/js/main.4c7e9c8e.chunk.js"
+    "static/js/main.df108420.chunk.js"
   ]
 }
