@@ -15,11 +15,6 @@ on:
       - '.github/workflows/copilot-migration-*.yml'
   
   workflow_dispatch:
-    inputs:
-      force_run:
-        description: 'Force run this migration workflow'
-        required: false
-        default: 'true'
 
 jobs:
   trigger-copilot:
