@@ -10,7 +10,7 @@ name: Copilot Migration - Test Migration
 on:
   push:
     branches:
-      - master
+      - test-copilot-workflow-1765489310972
     paths:
       - '.github/workflows/copilot-migration-*.yml'
   
