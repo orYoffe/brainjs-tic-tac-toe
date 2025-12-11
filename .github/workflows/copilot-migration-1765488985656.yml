@@ -1,0 +1,60 @@
+# This workflow was automatically generated on 2025-12-11T21:36:25.078Z
+# Purpose: Trigger GitHub Copilot to implement the migration task
+# This workflow runs once when the setup PR is merged, then creates an implementation PR
+
+name: Copilot Migration - Test Migration
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - master
+
+jobs:
+  trigger-copilot:
+    if: |
+      github.event.pull_request.merged == true &&
+      contains(github.event.pull_request.labels.*.name, 'copilot-migration')
+    
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: master
+      
+      - name: Extract migration details
+        id: extract
+        run: |
+          echo "Extracting migration prompt"
+          echo "prompt=Update dependencies and add tests" >> $GITHUB_OUTPUT
+          echo "pr_title=Test Migration" >> $GITHUB_OUTPUT
+          echo "target_branch=automated-update-test" >> $GITHUB_OUTPUT
+      
+      - name: Create Copilot implementation issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh issue create \
+            --title "[Copilot] ${{ steps.extract.outputs.pr_title }}" \
+            --body "## 🤖 Automated Migration Task
+
+${{ steps.extract.outputs.prompt }}
+
+**Configuration:**
+- Target Branch: master
+- Feature Branch: ${{ steps.extract.outputs.target_branch }}
+
+**Next Steps:**
+1. Assign this issue to Copilot from the GitHub UI
+2. Or manually implement the changes
+
+---
+*This issue was auto-created by workflow triggered from PR #${{ github.event.pull_request.number }}*" \
+            --label "copilot-migration,automated"
+      
+      - name: Workflow completion
+        run: |
+          echo "✅ Migration issue created!"
+          echo "📋 Check Issues tab to assign to Copilot"
